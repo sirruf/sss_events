@@ -1,0 +1,59 @@
+<table class="table table-striped">
+  <thead>
+  <th class="text-center" width="5%">
+    <%= Events::Event.human_attribute_name('id') %>
+  </th>
+  <th class="text-left" width="20%">
+    <%= Events::Event.human_attribute_name('name') %>
+  </th>
+  <th class="text-left" width="10%">
+    <%= Events::Event.human_attribute_name('event_course') %>
+  </th>
+  <th class="text-left" width="10%">
+    <%= Events::Event.human_attribute_name('event_type') %>
+  </th>
+  <th class="text-center" width="15%">
+    <%= Events::Event.human_attribute_name('event_date') %>
+  </th>
+  <th class="text-center" width="15%">
+    <%= Events::Event.human_attribute_name('event_time') %>
+  </th>
+  <th class="text-center" width="10%">
+  </th>
+  </thead>
+  <tbody>
+  <% @events.each do |event| %>
+      <tr>
+        <td class="text-center">
+          <span class="label label-info"><%= event.id %></span>
+        </td>
+        <td class="text-left">
+          <%= link_to event.name, admin_event_path(event) %>
+        </td>
+        <td class="text-left">
+          <%= event.course_name %>
+        </td>
+        <td class="text-left">
+          <%= event.type_name %>
+        </td>
+        <td class="text-center">
+          <span class="label label-info"><%= l(event.event_date, format: :short) %></span>
+        </td>
+        <td class="text-center">
+          <span class="label label-info"><%= event.event_time.to_s(:time) %></span>
+        </td>
+        <td class="text-center">
+          <%= link_to edit_admin_event_path(event), class: 'btn btn-default btn-sm' do %>
+              <i><i class="fa fa-edit"></i> </i>
+          <% end %>
+          <%= link_to admin_event_path(event), method: :delete, class: 'btn btn-default btn-sm' do %>
+              <i><i class="fa fa-trash-o"></i> </i>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<p>
+  <%= link_to t('buttons.new'), new_admin_event_path, class: 'btn btn-default' %>
+</p>

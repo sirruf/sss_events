@@ -1,0 +1,168 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Событие <%= "'#{@event.name}'" unless @event.new_record? %>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <%= form_for([:admin, @event], html: {class: "form-horizontal"}) do |f| %>
+            <fieldset>
+              <div class="form-group <%= 'has-error' if @event.errors[:event_course].present? %>">
+                <%= f.label :event_course, class: "col-sm-3 control-label" %>
+                <div class="col-sm-3">
+                  <%= f.select :event_course, Events::Event.available_courses, {}, { :class => 'form-control' } %>
+
+                </div>
+              </div>
+              <div class="form-group <%= 'has-error' if @event.errors[:event_type].present? %>">
+                <%= f.label :event_type, class: "col-sm-3 control-label" %>
+                <div class="col-sm-3">
+                  <%= f.select :event_type, Events::Event.available_types, {}, { :class => 'form-control' } %>
+
+                </div>
+              </div>
+              <div class="form-group <%= 'has-error' if @event.errors[:name].present? %>">
+                <%= f.label :name, class: 'col-sm-3 control-label' %>
+                <div class="col-sm-9">
+                  <%= f.text_field :name, class: 'form-control input-sm' %>
+                  <% if @event.errors[:name].present? %>
+                      <label class="control-label" for="inputError1"><%= get_devise_error(@event, :name) %></label>
+                  <% end %>
+                </div>
+              </div>
+              <div class="form-group <%= 'has-error' if @event.errors[:event_date].present? %>">
+                <%= f.label :event_date, class: 'col-sm-3 control-label' %>
+                <div class="col-sm-9">
+                  <%= f.text_field :event_date, class: 'form-control input-sm' %>
+                  <% if @event.errors[:event_date].present? %>
+                      <label class="control-label" for="inputError1"><%= get_devise_error(@event, :event_date) %></label>
+                  <% end %>
+                </div>
+              </div>
+              <div class="form-group <%= 'has-error' if @event.errors[:event_time].present? %>">
+                <%= f.label :event_time, class: 'col-sm-3 control-label' %>
+                <div class="col-sm-9">
+                  <%= f.text_field :event_time, class: 'form-control input-sm' %>
+                  <% if @event.errors[:event_time].present? %>
+                      <label class="control-label" for="inputError1"><%= get_devise_error(@event, :event_time) %></label>
+                  <% end %>
+                </div>
+              </div>
+
+              <% if defined?(photos).present? %>
+                  <div class="form-group <%= 'has-error' if @event.errors[:image_id].present? %>">
+                    <%= f.label :image_id, class: 'col-sm-3 control-label' %>
+                    <div class="col-sm-1">
+                      <%= f.text_field :image_id, class: 'form-control input-sm text-center' %>
+                      <% if @event.errors[:image_id].present? %>
+                          <label class="control-label" for="inputError1"><%= get_devise_error(@event, :image_id) %></label>
+                      <% end %>
+                    </div>
+                    <%= f.label :hot_gallery_image_size, class: 'col-sm-2 control-label' %>
+                    <div class="col-sm-2">
+                      <%= f.text_field :hot_gallery_image_size, class: 'form-control input-sm text-center', placeholder: '200x200#' %>
+                      <% if @event.errors[:hot_gallery_image_size].present? %>
+                          <label class="control-label" for="inputError1"><%= get_devise_error(@event, :hot_gallery_image_size) %></label>
+                      <% end %>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#sizes_help" style="margin-left: 10px;">
+                      <%= fa_icon('question') %>
+                    </button>
+                  </div>
+              <% end %>
+
+
+              <div class="form-group <%= 'has-error' if @event.errors[:description].present? %>">
+                <%= f.label :description, class: 'col-sm-3 control-label' %>
+                <div class="col-xs-9">
+                  <%= f.text_area :description, class: 'form-control input-sm', rows: 20 %>
+                </div>
+              </div>
+
+            </fieldset>
+            </div>
+            </div>
+            <hr class="clearfix">
+            </div>
+            <div class="panel-footer text-right">
+              <%= f.submit 'Сохранить', class: 'btn btn-default' %>
+
+        <% end %>
+
+        </div>
+        </div>
+
+
+<div class="modal fade" id="sizes_help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Примеры указания требуемого размера</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped text-muted">
+          <tr>
+            <td class="text-center"><code>400x300</code></td>
+            <td>Изменить размер, сохранить пропорции</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300!</code></td>
+            <td>Изменить размер, без сохранения пропорций</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x</code></td>
+            <td>Изменить ширину, сохранить пропорции</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>x300</code></td>
+            <td>Изменить высоту, сохранить пропорции</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300<</code></td>
+            <td>Изменить размер, если изображение меньше</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300></code></td>
+            <td>Изменить размер, если изображение больше</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>50x50%></code></td>
+            <td>Изменить ширину и высоту до 50%</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300^</code></td>
+            <td>Изменить ширину, высоту до минимального 400x300, сохранить пропорции</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>2000@</code></td>
+            <td>Изменить размер до максимальной площади 2000 пикселей</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300#</code></td>
+            <td>Изменить размер, обрезать, если необходимо поддерживать соотношение сторон (центрировать)</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300#ne</code></td>
+            <td>тоже что и выше, выбрать от угла север-восток</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300se</code></td>
+            <td>обрезать, выбрать от угла север-восток</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300+50+100</code></td>
+            <td>обрезать с точки 50,100 с шириной, высотой 400,300</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $('#event_event_date').datepicker({
+        dateFormat: 'yy-mm-dd'
+    });
+    $('#event_event_time').timepicker({ 'minTime': '4:00am', 'timeFormat': 'H:i' });
+</script>
