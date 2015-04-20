@@ -1,7 +1,21 @@
-<%= form_tag '', id: 'filters', remote: true, method: :get, class: "form-horizontal" do %>
-    <%= select_tag(:course, options_for_select(Events::Event.available_courses, selected: params[:course]), {class: 'form-control',required: 'true', autofocus: 'true', :onchange => 'this.form.submit()'}) %>
-    <%= select_tag(:type, options_for_select(Events::Event.available_types, selected: params[:type]), {class: 'form-control',required: 'true', autofocus: 'true', :onchange => 'this.form.submit()'}) %>
-<% end %>
-<div id="events">
-<%= render 'events' %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <%= form_tag '', id: 'filters', remote: true, method: :get, class: "form-horizontal" do %>
+          <div class="col-lg-4">
+            <div class="col-lg-6">
+              <%= select_tag(:course, options_for_select(Events::Event.available_courses, selected: params[:course]), {class: 'form-control input-sm', required: 'true', autofocus: 'true', :onchange => 'this.form.submit()'}) %>
+            </div>
+            <div class="col-lg-6">
+              <%= select_tag(:type, options_for_select(Events::Event.available_types, selected: params[:type]), {class: 'form-control  input-sm', required: 'true', autofocus: 'true', :onchange => 'this.form.submit()'}) %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div id="events">
+      <%= render 'events' %>
+    </div>
+  </div>
 </div>
