@@ -58,13 +58,6 @@
                           <label class="control-label" for="inputError1"><%= get_devise_error(@event, :image_id) %></label>
                       <% end %>
                     </div>
-                    <%= f.label :hot_gallery_image_size, class: 'col-sm-2 control-label' %>
-                    <div class="col-sm-2">
-                      <%= f.text_field :hot_gallery_image_size, class: 'form-control input-sm text-center', placeholder: '200x200#' %>
-                      <% if @event.errors[:hot_gallery_image_size].present? %>
-                          <label class="control-label" for="inputError1"><%= get_devise_error(@event, :hot_gallery_image_size) %></label>
-                      <% end %>
-                    </div>
                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#sizes_help" style="margin-left: 10px;">
                       <%= fa_icon('question') %>
                     </button>
