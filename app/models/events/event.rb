@@ -19,6 +19,7 @@ module Events
 
     scope :by_course, ->(event_course) { where('event_course = ?', event_course) }
     scope :by_type, ->(event_type) { where('event_type = ?', event_type) }
+    scope :at_this_month, where("event_date > ? AND < ?", Time.now.beginning_of_month, Time.now.end_of_month)
 
     def self.available_types
       TYPES.sort
