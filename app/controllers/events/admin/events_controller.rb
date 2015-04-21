@@ -7,10 +7,11 @@ module Events
       layout 'admin/control'
 
       def index
-        @events = Event.all.paginate(:page => params[:page], :per_page => 20)
+        @events = Event.where('event_date < ? OR event_date > ?', Time.now.beginning_of_month, Time.now.end_of_month).paginate(:page => params[:page], :per_page => 20)
       end
 
       def new
+        # noinspection RubyArgCount
         @event = Event.new
       end
 
