@@ -1,5 +1,5 @@
 <table class="table table-striped">
-<% @events.each do |event| %>
+  <% @events.each do |event| %>
       <tr>
         <td class="text-center">
           <span class="label label-info"><%= event.id %></span>
@@ -8,10 +8,10 @@
           <%= link_to event.name, event_path(event) %>
         </td>
         <td class="text-left">
-          <%= link_to event.event_course, event_path(event) %>
+          <%= link_to event.course_name, events_path(course: event.event_course) %>
         </td>
         <td class="text-left">
-          <%= link_to event.event_type, event_path(event) %>
+          <%= link_to event.type_name, events_path(type: event.event_type) %>
         </td>
         <td class="text-center">
           <span class="label label-info"><%= l(event.event_date, format: :short) %></span>
@@ -20,5 +20,5 @@
           <span class="label label-info"><%= event.event_time.to_s(:time) %></span>
         </td>
       </tr>
-<% end %>
+  <% end %>
 </table>
