@@ -62,7 +62,7 @@ module Events
       end
 
       def set_event
-        @event = Event.find(params[:id])
+        @event = Event.unscoped.find(params[:id])
       end
 
     end
