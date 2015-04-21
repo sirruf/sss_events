@@ -16,10 +16,11 @@ module Events
         ['Закрытие смены', :close_session],
         ['Прочее', :other]
     ]
-
+    default_scope  { where('event_date > ?', Time.now) }
     scope :by_course, ->(event_course) { where('event_course = ?', event_course) }
     scope :by_type, ->(event_type) { where('event_type = ?', event_type) }
-    scope :at_this_month, where("event_date > ? AND event_date < ?", Time.now.beginning_of_month, Time.now.end_of_month)
+    scope :at_this_month, where('event_date > ? AND event_date < ?', Time.now.beginning_of_month, Time.now.end_of_month)
+    scope :finished, where('event_date < ?', Time.now)
 
     def self.available_types
       TYPES.sort
@@ -40,8 +41,10 @@ module Events
     end
 
     def image_url
+      # noinspection RubyResolve
       image = Photos::Picture.find_by(id: self.image_id)
       if image.present?
+        # noinspection RubyResolve
         self.image_size.present? ? image.image.thumb(self.image_size).url : image.image.url
       end
     rescue
