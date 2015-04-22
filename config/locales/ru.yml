@@ -6,7 +6,7 @@ ru:
       long: "%B %d, %Y"
   activerecord:
     models:
-      news/post:
+      events/post:
         one: 'Событие'
         faw: 'Событий'
         many: 'Событий'
