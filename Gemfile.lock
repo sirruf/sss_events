@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    events (0.0.5)
+    events (0.0.6)
       acts_as_list
       font-awesome-rails
       jquery-rails

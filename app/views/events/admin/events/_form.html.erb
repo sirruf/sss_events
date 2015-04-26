@@ -75,7 +75,7 @@
               <div class="form-group <%= 'has-error' if @event.errors[:description].present? %>">
                 <%= f.label :description, class: 'col-sm-3 control-label' %>
                 <div class="col-xs-9">
-                  <%= f.text_area :description, class: 'form-control input-sm', rows: 20 %>
+                  <%= f.text_area :description, class: 'form-control input-sm editor', rows: 20 %>
                 </div>
               </div>
 

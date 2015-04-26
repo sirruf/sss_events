@@ -58,7 +58,7 @@
           <strong>Описание</strong>
         </td>
         <td class="text-left">
-          <%= simple_format @event.description %>
+          <%= @event.description.html_safe %>
         </td>
       </tr>
       <% if @event.image_url %>
