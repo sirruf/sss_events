@@ -8,6 +8,8 @@ module Events
       @events = @events.by_type(params[:type]) if params[:type].present?
       @events = @events.finished if params[:finished] == 'true'
       @events = @events.paginate(:page => params[:page], :per_page => 20)
+      @title = 'События клуба'
+
       respond_to do |format|
         format.html
         format.json { render json: @events }
@@ -16,6 +18,8 @@ module Events
 
 
     def show
+      @meta_keywords = @event.meta_keywords if @event.meta_keywords.present?
+      @title = @event.name
 
     end
 
