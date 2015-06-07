@@ -40,7 +40,7 @@
           <span class="label label-info"><%= l(event.event_date, format: :short) %></span>
         </td>
         <td class="text-center">
-          <span class="label label-info"><%= event.event_time.to_s(:time) %></span>
+          <span class="label label-info"><%= event.event_time.to_s(:time) rescue '' %></span>
         </td>
         <td class="text-center">
           <%= link_to edit_admin_event_path(event), class: 'btn btn-default btn-sm' do %>
