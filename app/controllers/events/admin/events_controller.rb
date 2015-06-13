@@ -26,7 +26,7 @@ module Events
 
         respond_to do |format|
           if @event.save
-            format.html { redirect_to edit_admin_event_path(@event), notice: 'Event was successfully created.' }
+            format.html { redirect_to admin_event_path(@event), notice: 'Event was successfully created.' }
             format.json { render action: 'show', status: :created, location: @event }
           else
             format.html { render action: 'new' }
