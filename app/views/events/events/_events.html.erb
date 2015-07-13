@@ -2,7 +2,7 @@
   <% @events.each do |event| %>
       <tr>
         <td class="text-center">
-          <span class="label label-info"><%= event.id %></span>
+          <span class="label <%= label_color(event) %>"><%= event.id %></span>
         </td>
         <td class="text-left">
           <%= link_to event.name, event_path(event) %>
@@ -14,10 +14,10 @@
           <%= link_to event.type_name, events_path(type: event.event_type) %>
         </td>
         <td class="text-center">
-          <span class="label label-info"><%= l(event.event_date, format: :short) %></span>
+          <span class="label <%= label_color(event) %>"><%= l(event.event_date, format: :short) %> <%= '(Завершено)' if event.finished? %></span>
         </td>
         <td class="text-center">
-          <span class="label label-info"><%= event.event_time.to_s(:time) %></span>
+          <span class="label <%= label_color(event) %>"><%= event.event_time.to_s(:time) %></span>
         </td>
       </tr>
   <% end %>

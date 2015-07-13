@@ -10,7 +10,7 @@
               <%= select_tag(:type, options_for_select(Events::Event.available_types, selected: params[:type]), { prompt: 'Все типы', class: 'form-control  input-sm', required: 'true', autofocus: 'true', :onchange => 'this.form.submit()'}) %>
             </div>
             <div class="col-lg-4 text-muted">
-              <%= check_box_tag :finished, true,params[:finished], :onclick => 'this.form.submit()' %> Завершенные
+              <%= check_box_tag :with_finished, true, params[:with_finished], :onclick => 'this.form.submit()' %> Показывать завершенные
             </div>
           </div>
       <% end %>

@@ -6,7 +6,7 @@ module Events
       @events = Event.all
       @events = @events.by_course(params[:course]) if params[:course].present?
       @events = @events.by_type(params[:type]) if params[:type].present?
-      @events = @events.finished if params[:finished] == 'true'
+      @events = @events.with_finished if params[:with_finished] == 'true'
       @events = @events.paginate(:page => params[:page], :per_page => 20)
       @title = 'События клуба'
 

@@ -20,7 +20,7 @@ module Events
     scope :by_course, ->(event_course) { where('event_course = ?', event_course) }
     scope :by_type, ->(event_type) { where('event_type = ?', event_type) }
     scope :at_this_month, -> { where('event_date > ? AND event_date < ?', Time.now.beginning_of_month, Time.now.end_of_month) }
-    scope :finished, -> { where('event_date < ?', Time.now) }
+    scope :with_finished, -> { unscoped.order(event_date: :desc) }
 
     def self.available_types
       TYPES.sort
@@ -49,6 +49,10 @@ module Events
       end
     rescue
       nil
+    end
+
+    def finished?
+      self.event_date < Time.now
     end
 
   end
