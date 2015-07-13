@@ -37,7 +37,7 @@
           <%= event.type_name %>
         </td>
         <td class="text-center">
-          <span class="label label-info"><%= l(event.event_date, format: :short) %></span>
+          <span class="label label-info"><%= l(event.event_date, format: :short)  rescue nil%></span>
         </td>
         <td class="text-center">
           <span class="label label-info"><%= event.event_time.to_s(:time) rescue '' %></span>

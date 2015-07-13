@@ -1,6 +1,6 @@
 module Events
   class Event < ActiveRecord::Base
-    validates :name, :event_type, :event_course, :event_date, presence: true
+    validates :name, :event_type, :event_course, :event_date, :event_time, presence: true
 
     COURSES = [
         ['Конный клуб', :hourse_club],

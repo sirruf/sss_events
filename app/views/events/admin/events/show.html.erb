@@ -34,7 +34,7 @@
           <strong>Дата</strong>
         </td>
         <td style="width: 80%" class="text-left">
-          <%= l @event.event_date, format: :short %>
+          <%= l @event.event_date, format: :short  rescue nil %>
         </td>
       </tr>
       <tr>
@@ -42,7 +42,7 @@
           <strong>Время</strong>
         </td>
         <td style="width: 80%" class="text-left">
-          <%= @event.event_time.to_s(:time)%>
+          <%= @event.event_time.to_s(:time) rescue nil %>
         </td>
       </tr>
       <tr>
@@ -50,7 +50,7 @@
           <strong>Дата изменения</strong>
         </td>
         <td style="width: 80%" class="text-left">
-          <%= l @event.updated_at, format: :short %>
+          <%= l @event.updated_at, format: :short  rescue nil %>
         </td>
       </tr>
       <tr>

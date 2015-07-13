@@ -14,10 +14,10 @@
           <%= link_to event.type_name, events_path(type: event.event_type) %>
         </td>
         <td class="text-center">
-          <span class="label <%= label_color(event) %>"><%= l(event.event_date, format: :short) %> <%= '(Завершено)' if event.finished? %></span>
+          <span class="label <%= label_color(event) %>"><%= l(event.event_date, format: :short) rescue nil %> <%= '(Завершено)' if event.finished? %></span>
         </td>
         <td class="text-center">
-          <span class="label <%= label_color(event) %>"><%= event.event_time.to_s(:time) %></span>
+          <span class="label <%= label_color(event) %>"><%= event.event_time.to_s(:time) rescue nil %></span>
         </td>
       </tr>
   <% end %>
