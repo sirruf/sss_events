@@ -30,6 +30,15 @@
                   <% end %>
                 </div>
               </div>
+              <div class="form-group <%= 'has-error' if @event.errors[:announce].present? %>">
+                <%= f.label :announce, class: 'col-sm-3 control-label' %>
+                <div class="col-sm-9">
+                  <%= f.text_field :announce, class: 'form-control input-sm' %>
+                  <% if @event.errors[:announce].present? %>
+                      <label class="control-label" for="inputError1"><%= get_devise_error(@event, :announce) %></label>
+                  <% end %>
+                </div>
+              </div>
               <div class="form-group <%= 'has-error' if @event.errors[:meta_keywords].present? %>">
                 <%= f.label :meta_keywords, class: 'col-sm-3 control-label' %>
                 <div class="col-sm-9">

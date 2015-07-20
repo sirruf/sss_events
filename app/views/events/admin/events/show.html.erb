@@ -15,6 +15,14 @@
       </tr>
       <tr>
         <td style="width: 20%" class="text-right text-uppercase">
+          <strong>Анонс</strong>
+        </td>
+        <td style="width: 80%" class="text-left">
+          <%= @event.announce %>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 20%" class="text-right text-uppercase">
           <strong>Направление</strong>
         </td>
         <td style="width: 80%" class="text-left">
@@ -34,7 +42,7 @@
           <strong>Дата</strong>
         </td>
         <td style="width: 80%" class="text-left">
-          <%= l @event.event_date, format: :short  rescue nil %>
+          <%= l @event.event_date, format: :short rescue nil %>
         </td>
       </tr>
       <tr>
@@ -50,7 +58,7 @@
           <strong>Дата изменения</strong>
         </td>
         <td style="width: 80%" class="text-left">
-          <%= l @event.updated_at, format: :short  rescue nil %>
+          <%= l @event.updated_at, format: :short rescue nil %>
         </td>
       </tr>
       <tr>
@@ -62,14 +70,14 @@
         </td>
       </tr>
       <% if @event.image_url %>
-              <tr>
-                <td style="width: 20%" class="text-right text-uppercase">
-                  <strong>Изображение</strong>
-                </td>
-                <td style="width: 80%" class="text-left">
-                  <%= image_tag @event.image_url, class: 'img-responsive' %>
-                </td>
-              </tr>
+          <tr>
+            <td style="width: 20%" class="text-right text-uppercase">
+              <strong>Изображение</strong>
+            </td>
+            <td style="width: 80%" class="text-left">
+              <%= image_tag @event.image_url, class: 'img-responsive' %>
+            </td>
+          </tr>
       <% end %>
       </tbody>
     </table>

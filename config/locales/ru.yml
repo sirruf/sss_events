@@ -15,6 +15,7 @@ ru:
       events/event:
         id: '#'
         name: 'Название'
+        announce: 'Анонс'
         description: 'Текст'
         event_course: 'Направление'
         event_type: 'Тип'

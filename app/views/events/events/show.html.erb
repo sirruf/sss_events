@@ -42,7 +42,7 @@
           <strong>Время</strong>
         </td>
         <td style="width: 80%" class="text-left">
-          <%= @event.event_time.to_s(:time)%>
+          <%= @event.event_time.to_s(:time) rescue '-' %>
         </td>
       </tr>
       <tr>
@@ -76,3 +76,19 @@
   </div>
 </div>
 
+<div itemscope itemtype="http://schema.org/Event">
+  <span itemprop="name" content="<%= @event.name %>"></span>
+  <span itemprop="startDate" content="<%= "#{@event.event_date.strftime('%F')}T#{@event.event_time.strftime('%H:%M')}" rescue nil %>"></span>
+  <span itemprop="description" content="<%= @event.announce %>"></span>
+   <span itemprop="location" itemscope itemtype="http://schema.org/Place">
+        <span itemprop="name" content="КСК VSedlo.ru">
+            <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+               <span itemprop="streetAddress" content="141420, МО, Солнечногорский р-н, дер. Жаворонки, КФХ Россия, Конный клуб"></span>
+               <span itemprop="addressCountry" content="RU"></span>
+               <span itemprop="addressLocality" content="дер. Жаворонки"></span>
+               <span itemprop="addressRegion" content="МО Солнечногорский р-н"></span>
+               <span itemprop="postalCode" content="141420"></span>
+            </span>
+        </span>
+  </span>
+</div>

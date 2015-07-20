@@ -51,10 +51,6 @@ module Events
       end
     end
 
-    def label_color(event)
-      event.finished? ? 'label-default' : 'label-info'
-    end
-    
     include FontAwesome::Rails::IconHelper
   end
 end

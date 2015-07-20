@@ -58,7 +58,7 @@ module Events
       private
 
       def event_params
-        params.require(:event).permit( :name, :description, :event_course, :event_type, :event_date, :event_time, :image_id, :image_size, :meta_keywords )
+        params.require(:event).permit( :name, :description, :event_course, :event_type, :event_date, :event_time, :image_id, :image_size, :meta_keywords, :announce )
       end
 
       def set_event
