@@ -3,6 +3,7 @@ module Events
     class EventsController < ApplicationController
       before_filter :authenticate_admin! if defined? Devise
       before_action :set_event, only: [:show, :edit, :update, :destroy]
+      before_action :set_breadcrumbs, only: [:show, :edit, :new, :index]
 
       layout 'admin/control'
 
@@ -11,14 +12,19 @@ module Events
       end
 
       def new
+        @breadcrumbs << {name: 'Новое событие', link: ''}
+
         # noinspection RubyArgCount
         @event = Event.new
       end
 
       def show
+        @breadcrumbs << {name: @event.name, link: admin_event_path(@event)}
       end
 
       def edit
+        @breadcrumbs << {name: @event.name, link: admin_event_path(@event)}
+        @breadcrumbs << {name: 'Редактирование', link: ''}
       end
 
       def create
@@ -63,6 +69,10 @@ module Events
 
       def set_event
         @event = Event.unscoped.find(params[:id])
+      end
+
+      def set_breadcrumbs
+        @breadcrumbs = [{name: 'Главная', link: main_app.admin_path}, {name: 'События', link: events.admin_events_path}]
       end
 
     end
