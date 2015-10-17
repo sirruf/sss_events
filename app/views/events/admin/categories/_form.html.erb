@@ -1,0 +1,78 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Курс <%= "'#{@category.name}'" unless @category.new_record? %>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <%= form_for([:admin, @category], html: {class: "form-horizontal"}) do |f| %>
+            <fieldset>
+              <div class="form-group <%= 'has-error' if @category.errors[:name].present? %>">
+                <%= f.label :name, class: 'col-sm-2 control-label' %>
+                <div class="col-sm-10">
+                  <%= f.text_field :name, class: 'form-control input-sm' %>
+                  <% if @category.errors[:name].present? %>
+                      <label class="control-label" for="inputError1"><%= get_devise_error(@category, :name) %></label>
+                  <% end %>
+                </div>
+              </div>
+
+            </fieldset>
+
+            </div>
+            </div>
+            <hr class="clearfix">
+            </div>
+            <div class="panel-footer text-right">
+              <%= f.submit 'Сохранить', class: 'btn btn-default' %>
+
+        <% end %>
+
+        </div>
+        </div>
+
+<script>
+    $( document ).ready(function() {
+        $('form').on('click', '.remove_fields', function(event) {
+            $(this).prev('input[type=hidden]').val('1');
+            $(this).closest('tr').hide();
+            return event.preventDefault();
+        });
+
+        $('form').on('click', '.add_stages_fields', function(event) {
+            var regexp, time;
+            time = new Date().getTime();
+            regexp = new RegExp($(this).data('id'), 'g');
+            //$(this).before($(this).data('fields').replace(regexp, time));
+            $('#stages').append($(this).data('fields').replace(regexp, time))
+
+            $('.editor').each(function (i, elem) {
+                $(elem).wysihtml5({
+                    locale: 'ru-RU',
+                    toolbar: {
+                        "fa": true,
+                        "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+                        "emphasis": true, //Italics, bold, etc. Default true
+                        "lists": false, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+                        "html": false, //Button which allows you to edit the generated HTML. Default false
+                        "link": true, //Button to insert a link. Default true
+                        "image": false, //Button to insert an image. Default true,
+                        "color": true, //Button to change color of font
+                        "blockquote": false, //Blockquote
+                        "size": 'xs' //default: none, other options are xs, sm, lg
+                    }});
+            });
+
+            return event.preventDefault();
+        });
+        $('form').on('click', '.add_costs_fields', function(event) {
+            var regexp, time;
+            time = new Date().getTime();
+            regexp = new RegExp($(this).data('id'), 'g');
+            //$(this).before($(this).data('fields').replace(regexp, time));
+            $('#costs').append($(this).data('fields').replace(regexp, time))
+            return event.preventDefault();
+        });
+    });
+
+</script>

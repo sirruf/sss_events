@@ -23,6 +23,8 @@ ru:
         event_time: 'Время'
         image_id: '# изображения'
         image_size: 'размер'
+        course_ids: 'Направления'
+        categories_ids: 'Категории'
     errors:
       models:
         events/events:

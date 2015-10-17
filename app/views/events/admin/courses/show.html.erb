@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Курс <%= "'#{@course.name}'" unless @course.new_record? %>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <tbody>
+      <tr>
+        <td style="width: 20%" class="text-right text-uppercase">
+          <strong>Наименование</strong>
+        </td>
+        <td style="width: 80%" class="text-left">
+          <%= @course.name %>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="panel-footer text-right">
+      <%= link_to t('buttons.edit'), edit_admin_course_path(@course), class: 'btn btn-default' %>
+    </div>
+  </div>
+</div>
+
+

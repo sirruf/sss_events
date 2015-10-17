@@ -11,13 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720185108) do
+ActiveRecord::Schema.define(version: 20151017064557) do
+
+  create_table "categories_events", id: false, force: true do |t|
+    t.integer "category_id"
+    t.integer "event_id"
+  end
+
+  add_index "categories_events", ["category_id"], name: "index_categories_events_on_category_id"
+  add_index "categories_events", ["event_id"], name: "index_categories_events_on_event_id"
+
+  create_table "courses_events", id: false, force: true do |t|
+    t.integer "course_id"
+    t.integer "event_id"
+  end
+
+  add_index "courses_events", ["course_id"], name: "index_courses_events_on_course_id"
+  add_index "courses_events", ["event_id"], name: "index_courses_events_on_event_id"
+
+  create_table "events_categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events_courses", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "events_events", force: true do |t|
     t.string   "name"
-    t.string   "event_course"
     t.text     "description"
-    t.string   "event_type"
     t.date     "event_date"
     t.time     "event_time"
     t.integer  "image_id"

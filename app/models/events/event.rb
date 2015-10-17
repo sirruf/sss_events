@@ -2,43 +2,14 @@ module Events
   class Event < ActiveRecord::Base
     validates :name, :event_type, :event_course, :event_date, :event_time, presence: true
 
-    COURSES = [
-        ['Конный клуб', :hourse_club],
-        ['Лагерь', :camp],
-        ['Экскурсии и мастерклассы', :tour],
-        ['Программы для школ', :for_school],
-        ['Общее', :common]
-    ]
-    TYPES = [
-        ['Соревнование', :competition],
-        ['Праздник', :holiday],
-        ['Открытие смены', :open_session],
-        ['Закрытие смены', :close_session],
-        ['Прочее', :other]
-    ]
-    default_scope  { where('event_date > ?', Time.now) }
-    scope :by_course, ->(event_course) { where('event_course = ?', event_course) }
-    scope :by_type, ->(event_type) { where('event_type = ?', event_type) }
+    has_and_belongs_to_many :courses, join_table: :courses_events, :class_name => 'Events::Course'
+    has_and_belongs_to_many :categories, join_table: :categories_events, :class_name => 'Events::Category'
+
+    # default_scope  { where('event_date > ?', Time.now) }
     scope :at_this_month, -> { where('event_date > ? AND event_date < ?', Time.now.beginning_of_month, Time.now.end_of_month) }
-    scope :with_finished, -> { unscoped.order(event_date: :desc) }
+    scope :unfinished_only, -> { where('event_date > ?', Time.now) }
+    scope :with_finished, -> { order(event_date: :desc) }
 
-    def self.available_types
-      TYPES.sort
-    end
-
-    def self.available_courses
-      COURSES.sort
-    end
-
-    def course_name
-      index = COURSES.map{|e| e.include?(self.event_course.to_sym)}.to_a.index(true)
-      COURSES[index][0] if index.present?
-    end
-
-    def type_name
-      index = TYPES.map{|e| e.include?(self.event_type.to_sym)}.to_a.index(true)
-      TYPES[index][0] if index.present?
-    end
 
     def image_url
       # noinspection RubyResolve
@@ -53,6 +24,16 @@ module Events
 
     def finished?
       self.event_date < Time.now
+    end
+
+    def self.by_course(course_id = nil)
+      course = Course.find_by(id: course_id)
+      course.events
+    end
+
+    def self.by_category(category_id = nil)
+      category = Category.find_by(id: category_id)
+      category.events
     end
 
   end

@@ -26,7 +26,7 @@
           <strong>Направление</strong>
         </td>
         <td style="width: 80%" class="text-left">
-          <%= @event.course_name %>
+          <%= @event.courses.pluck(:name).join(', ') rescue nil %>
         </td>
       </tr>
       <tr>
@@ -34,7 +34,7 @@
           <strong>Тип</strong>
         </td>
         <td style="width: 80%" class="text-left">
-          <%= @event.type_name %>
+          <%= @event.categories.pluck(:name).join(', ') %>
         </td>
       </tr>
       <tr>

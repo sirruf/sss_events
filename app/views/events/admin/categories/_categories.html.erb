@@ -1,0 +1,32 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th width="85%">Название</th>
+    <th width="5%">Событий</th>
+    <th width="10%"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @categories.each do |category| %>
+      <tr>
+        <td>
+          <%= category.name %>
+        </td>
+        <td class="text-center">
+          <%= category.events.count %>
+        </td>
+        <td class="text-center">
+          <%= link_to edit_admin_category_path(category), class: 'btn btn-xs btn-default' do %>
+              <%= fa_icon 'edit' %>
+          <% end %>
+          <% if category.events.count == 0 %>
+              <%= link_to admin_category_path(category), class: 'btn btn-xs btn-danger', method: :delete do %>
+                  <%= fa_icon 'trash' %>
+              <% end %>
+          <% end %>
+
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

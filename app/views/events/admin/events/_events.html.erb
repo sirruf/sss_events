@@ -6,16 +6,16 @@
   <th class="text-left" width="20%">
     <%= Events::Event.human_attribute_name('name') %>
   </th>
-  <th class="text-left" width="10%">
+  <th class="text-left" width="20%">
     <%= Events::Event.human_attribute_name('event_course') %>
   </th>
-  <th class="text-left" width="10%">
+  <th class="text-left" width="20%">
     <%= Events::Event.human_attribute_name('event_type') %>
   </th>
-  <th class="text-center" width="15%">
+  <th class="text-center" width="5%">
     <%= Events::Event.human_attribute_name('event_date') %>
   </th>
-  <th class="text-center" width="15%">
+  <th class="text-center" width="5%">
     <%= Events::Event.human_attribute_name('event_time') %>
   </th>
   <th class="text-center" width="10%">
@@ -31,10 +31,10 @@
           <%= link_to event.name, admin_event_path(event) %>
         </td>
         <td class="text-left">
-          <%= event.course_name %>
+          <%= event.courses.pluck(:name).join(', ') %>
         </td>
         <td class="text-left">
-          <%= event.type_name %>
+          <%= event.categories.pluck(:name).join(', ') %>
         </td>
         <td class="text-center">
           <span class="label label-info"><%= l(event.event_date, format: :short)  rescue nil%></span>

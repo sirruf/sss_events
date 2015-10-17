@@ -3,5 +3,7 @@ Events::Engine.routes.draw do
   namespace :admin do
     resources :events do
     end
+    resources :courses, path: '/events_courses'
+    resources :categories, path: '/events_categories'
   end
 end

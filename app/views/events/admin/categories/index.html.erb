@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><%= Events::Category.model_name.human(count: 2.1) %>
+    <div class="btn-group pull-right">
+      <%= link_to fa_icon('plus'), new_admin_category_path, class: 'btn btn-default btn-xs' %>
+    </div>
+    <div class="clearfix"></div>
+
+
+  </div>
+  <div class="panel-body">
+    <div class="form-group pull-right">
+    </div>
+    <div id="courses">
+      <%= render 'categories' %>
+    </div>
+  </div>
+</div>
+
