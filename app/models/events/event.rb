@@ -7,6 +7,7 @@ module Events
 
     # default_scope  { where('event_date > ?', Time.now) }
     scope :at_this_month, -> { where('event_date > ? AND event_date < ?', Time.now - 1.day, Time.now + 1.month) }
+    scope :from_now, -> { where('event_date > ?', Time.now - 1.day) }
     scope :unfinished_only, -> { where('event_date > ?', Time.now) }
     scope :with_finished, -> { order(event_date: :desc) }
 
