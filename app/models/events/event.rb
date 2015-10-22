@@ -6,7 +6,7 @@ module Events
     has_and_belongs_to_many :categories, join_table: :categories_events, :class_name => 'Events::Category'
 
     # default_scope  { where('event_date > ?', Time.now) }
-    scope :at_this_month, -> { where('event_date > ? AND event_date < ?', Time.now.beginning_of_month, Time.now.end_of_month) }
+    scope :at_this_month, -> { where('event_date > ? AND event_date < ?', Time.now - 1.day, Time.now + 1.month) }
     scope :unfinished_only, -> { where('event_date > ?', Time.now) }
     scope :with_finished, -> { order(event_date: :desc) }
 
