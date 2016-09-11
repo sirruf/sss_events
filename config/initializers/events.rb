@@ -37,3 +37,10 @@ module Events
     end
   end
 end
+
+config = YAML.load_file("#{Rails.root}/config/modules_config.yml")['modules']['events']
+if config.present?
+  config.each do |key, value|
+    Events.send("#{key}=", value) rescue nil
+  end
+end
