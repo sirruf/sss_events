@@ -1,6 +1,6 @@
 module Events
   class Event < ActiveRecord::Base
-    validates :name, :event_type, :event_course, :event_date, :event_time, presence: true
+    validates :name, :event_course, :event_date, :event_time, presence: true
 
     has_and_belongs_to_many :courses, join_table: :courses_events, :class_name => 'Events::Course'
     has_and_belongs_to_many :categories, join_table: :categories_events, :class_name => 'Events::Category'

@@ -6,19 +6,32 @@ ru:
       long: "%B %d, %Y"
   activerecord:
     models:
-      events/post:
+      events/event:
         one: 'Событие'
         faw: 'Событий'
         many: 'Событий'
         other: 'Собятия'
+      events/category:
+        one: 'Категория'
+        faw: 'Категорий'
+        many: 'Категорий'
+        other: 'Категории'
+      events/course:
+        one: 'Направление'
+        faw: 'Направлений'
+        many: 'Направлений'
+        other: 'Направления'
     attributes:
+      events/course:
+        name: 'Название'
+      events/category:
+        name: 'Название'
       events/event:
         id: '#'
         name: 'Название'
         announce: 'Анонс'
         description: 'Текст'
         event_course: 'Направление'
-        event_type: 'Тип'
         event_date: 'Дата'
         event_time: 'Время'
         image_id: '# изображения'

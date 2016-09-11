@@ -4,7 +4,6 @@ one:
   name: MyString
   event_course: MyString
   description: MyText
-  event_type: MyString
   event_data: 2015-04-20
   event_time: 2015-04-20 16:49:16
   image_id: 1
@@ -14,7 +13,6 @@ two:
   name: MyString
   event_course: MyString
   description: MyText
-  event_type: MyString
   event_data: 2015-04-20
   event_time: 2015-04-20 16:49:16
   image_id: 1
