@@ -11,3 +11,10 @@
 // about supported directives.
 //
 //= require_tree .
+
+$(document).ready(function () {
+    $('#event_event_date').datepicker({
+        dateFormat: 'yy-mm-dd'
+    });
+    $('#event_event_time').timepicker({'minTime': '4:00am', 'timeFormat': 'H:i'});
+});
