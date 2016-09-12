@@ -46,9 +46,3 @@ if config.present?
   end
 end
 
-unless Events.admin_namespace.present?
-  Events.send("admin_namespace=", 'admin') rescue nil
-end
-unless Events.courses_support.present?
-  Events.send("courses_support=", false) rescue nil
-end
