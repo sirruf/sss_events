@@ -8,7 +8,10 @@
           <%= link_to event.name, event_path(event) %>
         </td>
         <td class="text-left">
-          <%= link_to event.course_name, events_path(course: event.event_course) %>
+          <%= event.courses.pluck(:name).join(', ') %>
+        </td>
+        <td class="text-left">
+          <%= event.categories.pluck(:name).join(', ') %>
         </td>
         <td class="text-center">
           <span class="label <%= event.finished? ? 'label-default' : 'label-info' %>"><%= l(event.event_date, format: :short) rescue nil %> <%= '(Завершено)' if event.finished? %></span>
