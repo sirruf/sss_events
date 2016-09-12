@@ -10,7 +10,7 @@ ru:
         one: 'Событие'
         faw: 'Событий'
         many: 'Событий'
-        other: 'Собятия'
+        other: 'События'
       events/category:
         one: 'Категория'
         faw: 'Категорий'
