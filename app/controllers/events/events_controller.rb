@@ -7,7 +7,7 @@ module Events
       @events = Event.all
       @events = @events.by_course(params[:course]) if params[:course].present?
       @events = @events.by_category(params[:category]) if params[:category].present?
-      @events = params[:with_finished] == 'true' ? @events.with_finished : @events.unfinished_only
+      @events = params[:with_finished] == 'true' || Events.hide_finished == false ? @events.with_finished : @events.unfinished_only
       @events = @events.paginate(:page => params[:page], :per_page => 20)
       @title = 'События клуба'
 
